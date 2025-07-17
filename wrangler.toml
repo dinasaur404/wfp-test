@@ -1,0 +1,31 @@
+name = "wfp-test"
+main = "src/index.ts"
+compatibility_date = "2024-04-03"
+compatibility_flags = ["nodejs_compat"]
+
+# Route patterns for custom domain support
+# Using */* wildcard pattern (recommended by Cloudflare) for maximum compatibility
+routes = [
+  { pattern = "*/*", zone_name = "saasysite.me" }
+]
+
+[[ dispatch_namespaces ]]
+binding = "dispatcher"
+namespace = "workers-for-platforms-example-project" # make sure this is the same as the DISPATCH_NAMESPACE_NAME var
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "workers-for-platforms-example-project-test"
+database_id = "26738d2e-e5da-407a-bdb4-29d56c00e628"
+preview_database_id = ""
+
+[vars]
+DISPATCH_NAMESPACE_NAME = "workers-for-platforms-example-project"
+DISPATCH_NAMESPACE_ACCOUNT_ID = "ede31cad5fa379850e090febbeaba602"
+DISPATCH_NAMESPACE_API_TOKEN = "nVYpp9QDfNjzZydyFMUc3QYIPs1QZfOv0peWrkun"
+# Custom domain configuration - set these for your deployment
+CUSTOM_DOMAIN = "saasysite.me"  # Your root domain (change this for your deployment)
+BUILDER_SUBDOMAIN = "build"     # Subdomain where the builder is hosted (build.saasysite.me)
+FALLBACK_ORIGIN = "my.saasysite.me"  # Fallback origin for custom hostnames (where CNAMEs point)
+CLOUDFLARE_ZONE_ID = "447fd1c05aadfea7e64192206b7c57f9"  # Zone ID for custom hostname API calls
+CLOUDFLARE_API_TOKEN = "9jw_2xlg2f_5aqk9f5tms9haquC-TcBxB769RLFX"  # API token with Custom Hostname permissions
